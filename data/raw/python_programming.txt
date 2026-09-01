@@ -1,0 +1,17 @@
+Python Programming: Advanced Concepts and Best Practices
+
+Python is a high-level interpreted language renowned for its readability and versatility. Its design philosophy emphasizes code clarity — "there should be one obvious way to do it." Python's dynamic typing and automatic memory management lower the barrier for rapid development.
+
+Memory Management and Garbage Collection: Python manages memory automatically via reference counting. Every object tracks how many references point to it. When the count drops to zero, the memory is freed immediately. Python also runs a cyclic garbage collector to handle reference cycles — situations where objects point to each other creating a cycle that reference counting alone cannot break. The gc module exposes tuning knobs for the cycle collector.
+
+Decorators are a powerful metaprogramming tool. A decorator is a callable that takes a function and returns a modified version. The @syntax is syntactic sugar: @my_decorator applied to def foo() is equivalent to foo = my_decorator(foo). Decorators are used for logging, timing, authentication, caching (functools.lru_cache), and more. Class-based decorators enable stateful decoration.
+
+Context Managers via the with statement guarantee resource cleanup. A class implements __enter__ and __exit__ methods. The contextlib.contextmanager decorator lets you write a generator-based context manager without a class. This pattern is used for file handling, database connections, locking, and any resource that needs cleanup on exit regardless of exceptions.
+
+Generators and Iterators enable lazy evaluation. A generator function uses yield instead of return, suspending execution and yielding values one at a time. This is memory-efficient for large datasets — a generator that produces a billion numbers doesn't store them all in memory. Generator expressions use the syntax (expr for x in iterable) and are like list comprehensions but lazy.
+
+Concurrency in Python: The Global Interpreter Lock (GIL) prevents multiple threads from executing Python bytecode simultaneously. This limits CPU-bound parallelism in threads. For CPU-bound work, use multiprocessing to spawn separate processes each with their own GIL. For I/O-bound work, threading still helps because the GIL is released during I/O. The asyncio library provides cooperative multitasking via coroutines and event loops.
+
+Type Hints and mypy: Python 3.5+ supports optional type annotations. def add(x: int, y: int) -> int. The mypy static type checker enforces these at check time without affecting runtime. Type hints improve IDE support, catch bugs early, and serve as machine-verified documentation.
+
+Virtual Environments isolate dependencies per project. python -m venv .venv creates an isolated Python environment. pip install installs packages only inside it. This prevents version conflicts between projects. Poetry and uv are modern alternatives to pip+venv.

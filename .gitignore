@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv/
+venv/
+env/
+
+# Generated artifacts
+data/processed/
+
+# IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Streamlit cache
+.streamlit/secrets.toml

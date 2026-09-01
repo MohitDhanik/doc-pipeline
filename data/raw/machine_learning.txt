@@ -1,0 +1,17 @@
+Machine Learning: Fundamentals and Techniques
+
+Machine learning is a branch of artificial intelligence that enables computers to learn from data without being explicitly programmed for each task. Instead of writing rules by hand, we feed examples to algorithms that discover patterns automatically.
+
+Supervised Learning is the most common paradigm. The algorithm learns a mapping from inputs to outputs using labeled training examples. In classification, outputs are discrete categories — spam or not spam, cat or dog. In regression, outputs are continuous values — house price, temperature tomorrow. Key algorithms include linear regression, logistic regression, decision trees, random forests, and support vector machines.
+
+Unsupervised Learning finds structure in data without labels. Clustering algorithms like K-Means group similar data points together. Dimensionality reduction techniques like PCA compress high-dimensional data into fewer dimensions while preserving variance. Autoencoders learn compact representations of data in an unsupervised way.
+
+Gradient Descent is the core optimization algorithm for training neural networks. We define a loss function measuring how wrong our predictions are, then compute gradients — partial derivatives of the loss with respect to every weight. Gradient descent updates each weight by a small step in the direction that decreases the loss. The learning rate controls step size: too large and training oscillates, too small and convergence is slow.
+
+Neural Networks are composed of layers of artificial neurons. Each neuron computes a weighted sum of inputs, then applies a non-linear activation function like ReLU or sigmoid. Deep networks stack many layers, learning hierarchical representations — edges in early layers, shapes in middle layers, objects in final layers.
+
+Overfitting occurs when a model memorizes training data rather than generalizing. Regularization techniques like L1/L2 weight penalties, dropout, and early stopping combat overfitting. Cross-validation estimates generalization error by rotating which data subset is held out for testing.
+
+Evaluation metrics matter enormously. Accuracy is misleading on imbalanced datasets. Precision, recall, and F1 score capture different aspects of classification quality. The ROC curve and AUC summarize performance across decision thresholds.
+
+Transfer learning has revolutionized deep learning. Large models pre-trained on massive datasets encode general knowledge that can be fine-tuned on smaller task-specific datasets. This is why GPT and BERT-family models perform so well with limited task data.

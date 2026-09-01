@@ -1,0 +1,19 @@
+SQL Fundamentals: Queries, Aggregations, and Window Functions
+
+SQL (Structured Query Language) is the standard language for communicating with relational databases. It is declarative — you describe what you want, not how to get it. The database's query planner figures out the most efficient execution.
+
+Basic Query Structure: SELECT specifies columns, FROM specifies tables, WHERE filters rows, GROUP BY groups rows for aggregation, HAVING filters groups, ORDER BY sorts results, LIMIT restricts row count. These clauses are evaluated in a specific order: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT.
+
+Joins combine data from multiple tables. An INNER JOIN returns only rows with matches in both tables. A LEFT JOIN returns all rows from the left table plus matching rows from the right (NULL if no match). RIGHT JOIN is the mirror. FULL OUTER JOIN returns all rows from both sides. A CROSS JOIN produces the cartesian product — every combination.
+
+Aggregation Functions: COUNT, SUM, AVG, MIN, MAX operate on groups of rows. COUNT(*) counts all rows, COUNT(column) counts non-null values. GROUP BY splits rows into groups by unique values. HAVING filters groups — WHERE cannot reference aggregate results, HAVING can.
+
+Subqueries embed one query inside another. A correlated subquery references columns from the outer query and is re-evaluated for each outer row. Common Table Expressions (CTEs) with WITH make complex subqueries readable by naming intermediate results. Recursive CTEs can traverse hierarchical data like org charts.
+
+Window Functions are one of SQL's most powerful features. Unlike aggregation, window functions compute values across a set of rows related to the current row without collapsing them into a single group. ROW_NUMBER() assigns a unique sequential integer to each row within a partition. RANK() and DENSE_RANK() assign ranks allowing ties. LAG(column, n) and LEAD(column, n) access previous or next rows. SUM(sales) OVER (PARTITION BY region ORDER BY date ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) computes a rolling 7-day sum.
+
+The OVER clause defines the window. PARTITION BY divides rows into groups. ORDER BY defines order within each group. The frame clause (ROWS BETWEEN or RANGE BETWEEN) specifies which rows the function sees relative to the current row.
+
+Indexes and Query Plans: The EXPLAIN (or EXPLAIN ANALYZE) command shows the execution plan a query uses. Seq Scan means every row is read. Index Scan uses an index to jump to matching rows. A nested loop join iterates the outer table and probes the inner table per row — good for small inputs. A hash join builds a hash table on the smaller input and probes it — better for large inputs.
+
+Transactions: BEGIN starts a transaction, COMMIT makes changes permanent, ROLLBACK undoes them. Savepoints create intermediate checkpoints inside a transaction. Isolation levels (READ COMMITTED, REPEATABLE READ, SERIALIZABLE) control how concurrent transactions see each other's changes.

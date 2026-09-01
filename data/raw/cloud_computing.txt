@@ -1,0 +1,17 @@
+Cloud Computing: Services, Models, and Architecture
+
+Cloud computing delivers computing resources — servers, storage, databases, networking, analytics — over the internet on a pay-as-you-go model. The three dominant providers are AWS, Google Cloud Platform, and Microsoft Azure.
+
+Service Models: Infrastructure as a Service (IaaS) provides raw compute, storage, and networking. You manage the OS and above. Virtual machines like AWS EC2 are IaaS. Platform as a Service (PaaS) provides a managed platform — you deploy code and the provider manages the runtime, OS, and infrastructure. AWS Elastic Beanstalk and Google App Engine are PaaS. Software as a Service (SaaS) delivers complete applications — Gmail, Salesforce, and Slack are SaaS.
+
+The Shared Responsibility Model defines security boundaries. The provider is responsible for security of the cloud — physical data centers, hardware, network infrastructure, hypervisor. The customer is responsible for security in the cloud — operating system patches, application security, data encryption, access management. Misunderstanding this model causes most cloud security breaches.
+
+Scalability Patterns: Vertical scaling (scale up) adds more resources to a single machine — more CPU, more RAM. Horizontal scaling (scale out) adds more machines to distribute load. Horizontal scaling requires stateless application design because requests may hit any machine. Auto-scaling groups automatically add or remove instances based on CPU, memory, or custom metrics.
+
+Storage Classes: Object storage (S3, GCS) stores blobs identified by key. It scales infinitely and is cheap. Block storage (EBS) attaches to a VM like a hard drive. File storage (EFS) provides shared filesystem access. Databases (RDS, Cloud SQL) manage relational data. Data warehouses (BigQuery, Redshift, Snowflake) handle analytical workloads at petabyte scale.
+
+Content Delivery Networks (CDNs) cache static assets at edge locations close to users, reducing latency. CloudFront, Fastly, and Cloudflare are major CDN providers. CDNs also provide DDoS protection by absorbing attack traffic at the edge.
+
+Serverless Computing: Functions as a Service (AWS Lambda, Google Cloud Functions) let you run code without managing servers. You upload a function, define triggers (HTTP request, message queue event, scheduled cron), and pay per invocation. Cold start latency is the main drawback — the first invocation after idle time is slower as the container spins up.
+
+Networking: Virtual Private Clouds (VPCs) create isolated network environments within a cloud provider. Subnets divide a VPC by availability zone. Security groups act as stateful firewalls. Peering connects VPCs. Direct Connect / Cloud Interconnect provide dedicated private connections from on-premises to cloud.

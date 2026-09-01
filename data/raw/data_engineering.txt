@@ -1,0 +1,17 @@
+Data Engineering: Pipelines, Storage, and Processing
+
+Data engineering is the discipline of designing and building systems that collect, transform, and deliver data reliably at scale. Data engineers build the infrastructure that data scientists and analysts depend on.
+
+ETL vs ELT: Traditional ETL (Extract, Transform, Load) transforms data before loading into the warehouse. Modern ELT (Extract, Load, Transform) loads raw data first, then transforms in-place using the warehouse's own compute. ELT became viable as cloud data warehouses like BigQuery and Snowflake became powerful enough to transform petabytes in-place. dbt (data build tool) is the dominant ELT transformation framework.
+
+Batch vs Streaming: Batch pipelines process data in periodic windows — hourly, daily. They are simple and fault-tolerant but introduce latency. Streaming pipelines process events in real time with sub-second latency. Apache Kafka is the standard message broker for streaming. Apache Flink and Spark Structured Streaming are popular stream processing frameworks. Lambda architecture combines batch and streaming layers.
+
+Columnar Storage: Row-oriented storage (like a CSV or row-store database) is good for retrieving entire records. Columnar storage (Apache Parquet, ORC) stores each column contiguously. This is far more efficient for analytical queries that read only a few columns across many rows. Columnar formats also compress extremely well because similar values in a column compress together.
+
+Apache Spark is the dominant distributed processing engine. Spark DataFrames represent distributed datasets partitioned across a cluster. Transformations are lazy — they build an execution plan. Actions (collect, write) trigger execution. Spark's Catalyst optimizer rewrites the execution plan for efficiency. PySpark exposes Spark's power from Python.
+
+Data Quality is a first-class concern. Pipelines should validate schemas, check for nulls, verify value ranges, and monitor for drift over time. Great Expectations is a popular Python library for defining and running data quality assertions as code.
+
+Orchestration tools schedule and monitor pipelines. Apache Airflow defines workflows as DAGs (Directed Acyclic Graphs) in Python code. Each DAG node is a task. Airflow tracks task state, retries failures, and sends alerts. Prefect and Dagster are modern alternatives with better local development experience.
+
+Data Catalogs track metadata about what data exists, its schema, lineage (where it came from), and ownership. Apache Atlas, DataHub, and Amundsen are open-source catalogs. A good catalog prevents the "swamp" problem where data lakes accumulate undocumented datasets no one trusts.

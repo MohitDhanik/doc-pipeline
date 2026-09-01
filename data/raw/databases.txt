@@ -1,0 +1,17 @@
+Relational Databases: Architecture, Indexing, and Transactions
+
+A relational database organizes data into tables with rows and columns. Each table represents an entity type, each row is an instance, and each column is an attribute. Tables relate to each other through foreign keys — a reference from one table's column to another table's primary key.
+
+Indexes are data structures that speed up data retrieval. Without an index, a query must scan every row in the table — a full table scan. An index on a column builds a B-tree (or hash) structure that lets the database jump directly to matching rows in O(log n) time. The tradeoff: indexes consume disk space and slow down write operations, because each INSERT, UPDATE, or DELETE must update the index too.
+
+A B-tree index stores sorted key values with pointers to the actual rows. Range queries work efficiently because the sorted structure lets you scan from the start value to the end value. A hash index maps keys to buckets for exact-match lookups in O(1) but cannot handle range queries.
+
+ACID Properties guarantee reliable transactions. Atomicity means a transaction either fully commits or fully rolls back — no partial updates. Consistency ensures the database moves from one valid state to another, enforcing constraints. Isolation means concurrent transactions don't interfere with each other, achieved through locking or multiversion concurrency control (MVCC). Durability means committed data survives system crashes, ensured by write-ahead logging (WAL).
+
+Query optimization is handled by the query planner. Given a SQL statement, the planner considers multiple execution plans — nested loop join, hash join, merge join — and estimates their cost using table statistics. It chooses the plan with the lowest estimated cost. The EXPLAIN command shows which plan was chosen.
+
+Normalization eliminates data redundancy. First Normal Form (1NF) requires atomic column values. Second Normal Form (2NF) eliminates partial dependencies on composite keys. Third Normal Form (3NF) eliminates transitive dependencies. Higher normal forms exist but 3NF is usually sufficient for OLTP databases.
+
+NoSQL databases sacrifice ACID guarantees for horizontal scalability. Document stores (MongoDB) store JSON-like documents. Key-value stores (Redis) map keys to arbitrary blobs. Column-family stores (Cassandra) optimize for write-heavy workloads. Graph databases (Neo4j) efficiently traverse relationships.
+
+Connection pooling is critical for performance. Opening a new database connection is expensive — it requires network round trips and authentication. A connection pool maintains a set of open connections that queries can borrow and return. PgBouncer and HikariCP are popular poolers.
